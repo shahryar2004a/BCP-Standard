@@ -1,0 +1,163 @@
+[
+  {
+    "name": "Asset 4",
+    "type": "Type D",
+    "resources": {
+      "resource1": 25,
+      "resource2": 35,
+      "resource3": 45,
+      "resource4": 55
+    },
+    "indices": {
+      "index1": 40,
+      "index2": 50,
+      "index3": 60,
+      "index4": 70,
+      "index5": 80
+    },
+    "raciMatrix": {
+      "responsible": "Ivy Purple",
+      "support": "Jake Silver",
+      "consulted": "Kelly Gold",
+      "informed": "Leo Bronze"
+    }
+  },
+  {
+    "name": "Asset 5",
+    "type": "Type E",
+    "resources": {
+      "resource1": 30,
+      "resource2": 40,
+      "resource3": 50,
+      "resource4": 60
+    },
+    "indices": {
+      "index1": 65,
+      "index2": 75,
+      "index3": 85,
+      "index4": 95,
+      "index5": 100
+    },
+    "raciMatrix": {
+      "responsible": "Mike Teal",
+      "support": "Nina Coral",
+      "consulted": "Oscar Jade",
+      "informed": "Penny Ruby"
+    }
+  },
+  {
+    "name": "Asset 6",
+    "type": "Type F",
+    "resources": {
+      "resource1": 35,
+      "resource2": 45,
+      "resource3": 55,
+      "resource4": 65
+    },
+    "indices": {
+      "index1": 30,
+      "index2": 40,
+      "index3": 50,
+      "index4": 60,
+      "index5": 70
+    },
+    "raciMatrix": {
+      "responsible": "Quinn Amber",
+      "support": "Ray Sapphire",
+      "consulted": "Sam Emerald",
+      "informed": "Tina Topaz"
+    }
+  },
+  {
+    "name": "Asset 7",
+    "type": "Type G",
+    "resources": {
+      "resource1": 40,
+      "resource2": 50,
+      "resource3": 60,
+      "resource4": 70
+    },
+    "indices": {
+      "index1": 90,
+      "index2": 85,
+      "index3": 75,
+      "index4": 65,
+      "index5": 55
+    },
+    "raciMatrix": {
+      "responsible": "Uma Lime",
+      "support": "Victor Cyan",
+      "consulted": "Wendy Violet",
+      "informed": "Xander Plum"
+    }
+  },
+  {
+    "name": "Asset 8",
+    "type": "Type H",
+    "resources": {
+      "resource1": 45,
+      "resource2": 55,
+      "resource3": 65,
+      "resource4": 75
+    },
+    "indices": {
+      "index1": 10,
+      "index2": 20,
+      "index3": 30,
+      "index4": 40,
+      "index5": 50
+    },
+    "raciMatrix": {
+      "responsible": "Yara Indigo",
+      "support": "Zane Magenta",
+      "consulted": "Alan Turquoise",
+      "informed": "Bella Lavender"
+    }
+  },
+  {
+    "name": "Asset 9",
+    "type": "Type I",
+    "resources": {
+      "resource1": 50,
+      "resource2": 60,
+      "resource3": 70,
+      "resource4": 80
+    },
+    "indices": {
+      "index1": 45,
+      "index2": 55,
+      "index3": 65,
+      "index4": 75,
+      "index5": 85
+    },
+    "raciMatrix": {
+      "responsible": "Carl Crimson",
+      "support": "Dana Gold",
+      "consulted": "Eve Jade",
+      "informed": "Finn Rose"
+    }
+  },
+  {
+    "name": "Asset 10",
+    "type": "Type J",
+    "resources": {
+      "resource1": 55,
+      "resource2": 65,
+      "resource3": 75,
+      "resource4": 85
+    },
+    "indices": {
+      "index1": 95,
+      "index2": 85,
+      "index3": 75,
+      "index4": 65,
+      "index5": 55
+    },
+    "raciMatrix": {
+      "responsible": "Gina Pearl",
+      "support": "Hank Opal",
+      "consulted": "Ivy Amber",
+      "informed": "Jack Onyx"
+    }
+  }
+]

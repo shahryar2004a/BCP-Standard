@@ -1,0 +1,103 @@
+[
+    {
+      "firstName": "John",
+      "lastName": "Doe",
+      "phone": "123-456-7890",
+      "email": "john.doe@example.com",
+      "address": "123 Main St, Springfield",
+      "emergencyStatus": "Available",
+      "department": "Finance",
+      "responsibility": "Accountant"
+    },
+    {
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "phone": "987-654-3210",
+      "email": "jane.smith@example.com",
+      "address": "456 Elm St, Springfield",
+      "emergencyStatus": "Unavailable",
+      "department": "HR",
+      "responsibility": "HR Manager"
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Brown",
+      "phone": "555-123-4567",
+      "email": "paul.brown@example.com",
+      "address": "789 Oak St, Springfield",
+      "emergencyStatus": "Available",
+      "department": "IT",
+      "responsibility": "System Administrator"
+    },
+    {
+      "firstName": "Emily",
+      "lastName": "White",
+      "phone": "444-555-6666",
+      "email": "emily.white@example.com",
+      "address": "321 Maple St, Springfield",
+      "emergencyStatus": "Available",
+      "department": "Marketing",
+      "responsibility": "Marketing Specialist"
+    },
+    {
+      "firstName": "Mike",
+      "lastName": "Green",
+      "phone": "333-777-8888",
+      "email": "mike.green@example.com",
+      "address": "654 Pine St, Springfield",
+      "emergencyStatus": "Unavailable",
+      "department": "Sales",
+      "responsibility": "Sales Representative"
+    },
+    {
+      "firstName": "Anna",
+      "lastName": "Black",
+      "phone": "111-222-3333",
+      "email": "anna.black@example.com",
+      "address": "987 Birch St, Springfield",
+      "emergencyStatus": "Available",
+      "department": "Operations",
+      "responsibility": "Operations Manager"
+    },
+    {
+      "firstName": "Tom",
+      "lastName": "Gray",
+      "phone": "222-333-4444",
+      "email": "tom.gray@example.com",
+      "address": "135 Cedar St, Springfield",
+      "emergencyStatus": "Unavailable",
+      "department": "Procurement",
+      "responsibility": "Procurement Specialist"
+    },
+    {
+      "firstName": "Lucy",
+      "lastName": "Red",
+      "phone": "666-777-8888",
+      "email": "lucy.red@example.com",
+      "address": "246 Cherry St, Springfield",
+      "emergencyStatus": "Available",
+      "department": "Legal",
+      "responsibility": "Legal Advisor"
+    },
+    {
+      "firstName": "David",
+      "lastName": "Blue",
+      "phone": "555-888-9999",
+      "email": "david.blue@example.com",
+      "address": "357 Walnut St, Springfield",
+      "emergencyStatus": "Available",
+      "department": "R&D",
+      "responsibility": "Research Scientist"
+    },
+    {
+      "firstName": "Sophia",
+      "lastName": "Gold",
+      "phone": "123-987-6543",
+      "email": "sophia.gold@example.com",
+      "address": "789 Willow St, Springfield",
+      "emergencyStatus": "Unavailable",
+      "department": "Customer Support",
+      "responsibility": "Support Specialist"
+    }
+  ]
+  

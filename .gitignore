@@ -1,0 +1,47 @@
+# === General ===
+.DS_Store
+Thumbs.db
+
+# === IDEs / Editors ===
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*.swo
+
+# === Logs ===
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# === Environment Files ===
+*.env
+*.env.*
+
+# === Backend (Node.js + Express + MongoDB) ===
+backend/node_modules/
+backend/coverage/
+backend/pids/
+backend/*.pid
+backend/*.seed
+backend/*.pid.lock
+backend/.eslintcache
+backend/dump/
+backend/*.mongodb
+
+# === Frontend (React) ===
+frontend/node_modules/
+frontend/build/
+frontend/.eslintcache
+
+# === Cache / Build artifacts ===
+.cache/
+dist/
+build/
+.next/
+out/

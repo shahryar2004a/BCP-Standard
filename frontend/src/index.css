@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    @font-face {
+        font-family: 'Yekan Bakh';
+        src: url('../public/fonts/Yekan\ Bakh\ 07\ Heavy.ttf') format('truetype');
+        font-weight: 700;
+      }
+      
+      @font-face {
+        font-family: 'Yekan Bakh';
+        src: url('../public/fonts/Yekan\ Bakh\ EN\ 03\ Light.ttf') format('truetype');
+        font-weight: 300;
+      }
+      
+      @font-face {
+        font-family: 'Yekan Bakh';
+        src: url('../public/fonts/Yekan\ Bakh\ EN\ 05\ Medium.ttf') format('truetype');
+        font-weight: 500;
+      }
+      
+}
+@layer components{
+
+    .sidebarListItem{
+  @apply p-[5px] cursor-pointer flex items-center rounded-xl hover:bg-[rgb(240,240,255)];
+    }
+    .sidebarIcon{
+        @apply mr-[5px] text-[20px];
+    }
+    .newProductFormInputContainer{
+        @apply flex flex-col justify-center mt-[10px] gap-[10px];
+    }
+    .newProductFormInput{
+        @apply p-[10px] text-[15px] border border-solid border-gray-400 focus:outline-none;
+    }
+    .FormBtn{
+        @apply w-[200px] p-[10px] bg-blue-700 text-white 
+        border border-blue-700 rounded transition-all delay-75 cursor-pointer
+         hover:bg-white  hover:text-blue-700 hover:border  hover:border-blue-700;
+       
+    }
+}
