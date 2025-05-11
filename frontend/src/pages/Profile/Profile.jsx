@@ -1,119 +1,123 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Button, Box, Typography, Grid, IconButton, InputAdornment } from '@mui/material';
-import { Visibility, VisibilityOff } from "@mui/icons-material";
+import React, { useState, useEffect, useCallback } from 'react';
+import {
+  TextField,
+  Button,
+  Box,
+  Typography,
+  Grid,
+  IconButton,
+  InputAdornment,
+} from '@mui/material';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const PasswordField = ({ label, value, onChange, show, toggle }) => (
+  <TextField
+    label={label}
+    type={show ? 'text' : 'password'}
+    value={value}
+    onChange={onChange}
+    fullWidth
+    InputProps={{
+      endAdornment: (
+        <InputAdornment position="end">
+          <IconButton onClick={toggle}>
+            {show ? <VisibilityOff /> : <Visibility />}
+          </IconButton>
+        </InputAdornment>
+      ),
+    }}
+  />
+);
+
 const UserProfile = () => {
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [user, setUser] = useState({
+  const navigate = useNavigate();
+  const userSession = JSON.parse(sessionStorage.getItem('user'));
+  const userId = userSession?.id;
+
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
-    pass: '',
+    currentPassword: '',
+    newPassword: '',
+    confirmPassword: '',
   });
+
   const [originalUser, setOriginalUser] = useState({});
-  const [isChanged, setIsChanged] = useState(false);
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
+  const [isChanged, setIsChanged] = useState(false);
 
-  const userSession = JSON.parse(sessionStorage.getItem('user'));
-  const [userId, setUserId] = useState(userSession?.id);
-
-  const fetchUserProfile = async () => {
+  const fetchUserProfile = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/api/users/${userId}`);
-      setUser(response.data);
-      setOriginalUser(response.data);
-      setLoading(false);
-    } catch (error) {
+      const { data } = await axios.get(`http://localhost:5000/api/users/${userId}`);
+      setFormData((prev) => ({ ...prev, name: data.name, email: data.email }));
+      setOriginalUser({ name: data.name, email: data.email });
+    } catch {
       setError('خطا در دریافت اطلاعات کاربر');
+    } finally {
       setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    if (userId) {
-      fetchUserProfile();
     }
   }, [userId]);
 
+  useEffect(() => {
+    if (userId) fetchUserProfile();
+  }, [fetchUserProfile]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser((prevUser) => ({
-      ...prevUser,
-      [name]: value,
-    }));
-
-    if (originalUser[name] !== value) {
-      setIsChanged(true);
-    } else {
-      setIsChanged(false);
-    }
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+      setIsChanged(updated.name !== originalUser.name || updated.email !== originalUser.email);
+      return updated;
+    });
   };
 
   const handleSaveGeneralInfo = async () => {
     try {
-      const payload = { name: user.name, email: user.email };
-      const response = await axios.put(`http://localhost:5000/api/users/${userId}`, payload);
-
-      if (response.status === 200) {
-        alert('اطلاعات عمومی با موفقیت ذخیره شد');
-        sessionStorage.setItem('user', JSON.stringify({ ...user }));
-        fetchUserProfile();
-        setOriginalUser({
-          ...originalUser,
-          name: user.name,
-          email: user.email,
-        });
-        setIsChanged(false);
-      }
-      sessionStorage.removeItem("user");
-      sessionStorage.removeItem("token");
-      navigate('/login')
+      const { name, email } = formData;
+      await axios.put(`http://localhost:5000/api/users/${userId}`, { name, email });
+      sessionStorage.removeItem('user');
+      sessionStorage.removeItem('token');
+      alert('اطلاعات با موفقیت ذخیره شد. لطفاً دوباره وارد شوید.');
+      navigate('/login');
       window.location.reload();
-
-    } catch (error) {
-      alert('خطا در ذخیره اطلاعات عمومی');
+    } catch {
+      alert('خطا در ذخیره اطلاعات');
     }
   };
 
   const handlePasswordChange = async () => {
+    const { currentPassword, newPassword, confirmPassword } = formData;
+
     if (newPassword !== confirmPassword) {
-      setPasswordError('رمز عبور جدید و تایید آن مطابقت ندارد');
+      setPasswordError('رمز عبور جدید و تکرار آن یکسان نیست');
       return;
     }
 
     try {
-      const passwordCheckResponse = await axios.post('http://localhost:5000/api/users/check-password', {
+      const check = await axios.post('http://localhost:5000/api/users/check-password', {
         userId,
         currentPassword,
       });
 
-      if (!passwordCheckResponse.data.valid) {
+      if (!check.data.valid) {
         setPasswordError('رمز عبور فعلی اشتباه است');
         return;
       }
 
-      const response = await axios.put(`http://localhost:5000/api/users/change-password/${userId}`, {
+      await axios.put(`http://localhost:5000/api/users/change-password/${userId}`, {
         newPassword,
       });
 
-      if (response.status === 200) {
-        alert('رمز عبور با موفقیت تغییر کرد');
-        navigate('/login');
-      }
-    } catch (error) {
+      alert('رمز عبور با موفقیت تغییر یافت');
+      navigate('/login');
+    } catch {
       setPasswordError('خطا در تغییر رمز عبور');
     }
-  };
-
-  const togglePasswordVisibility = () => {
-    setShowPassword((prev) => !prev);
   };
 
   if (loading) return <Typography>در حال بارگذاری...</Typography>;
@@ -121,7 +125,7 @@ const UserProfile = () => {
 
   return (
     <Box dir="rtl" sx={{ mt: 4, mx: 'auto', maxWidth: 600 }}>
-      <Typography sx={{ fontFamily: '"Yekan Bakh", sans-serif' }} variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom fontFamily="Yekan Bakh">
         پروفایل کاربر
       </Typography>
       <Grid container spacing={2}>
@@ -129,7 +133,7 @@ const UserProfile = () => {
           <TextField
             label="نام"
             name="name"
-            value={user.name}
+            value={formData.name}
             onChange={handleChange}
             fullWidth
           />
@@ -138,7 +142,7 @@ const UserProfile = () => {
           <TextField
             label="ایمیل"
             name="email"
-            value={user.email}
+            value={formData.email}
             onChange={handleChange}
             fullWidth
           />
@@ -146,59 +150,40 @@ const UserProfile = () => {
         <Grid item xs={12}>
           <Button
             variant="contained"
-            color="primary"
-            onClick={handleSaveGeneralInfo}
             fullWidth
-            sx={{ fontFamily: '"Yekan Bakh", sans-serif' }}
+            onClick={handleSaveGeneralInfo}
             disabled={!isChanged}
+            sx={{ fontFamily: '"Yekan Bakh", sans-serif' }}
           >
-            ذخیره تغییرات اطلاعات عمومی
+            ذخیره اطلاعات
           </Button>
         </Grid>
+
         <Grid item xs={12}>
-          <TextField
+          <PasswordField
             label="رمز عبور فعلی"
-            type={showPassword ? "text" : "password"}
-            value={currentPassword}
-            onChange={(e) => setCurrentPassword(e.target.value)}
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={togglePasswordVisibility}>
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
+            value={formData.currentPassword}
+            onChange={(e) => handleChange({ target: { name: 'currentPassword', value: e.target.value } })}
+            show={showPassword}
+            toggle={() => setShowPassword((prev) => !prev)}
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
+          <PasswordField
             label="رمز عبور جدید"
-            name="newPassword"
-            type={showPassword ? "text" : "password"}
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            fullWidth
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton onClick={togglePasswordVisibility}>
-                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
+            value={formData.newPassword}
+            onChange={(e) => handleChange({ target: { name: 'newPassword', value: e.target.value } })}
+            show={showPassword}
+            toggle={() => setShowPassword((prev) => !prev)}
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             label="تایید رمز عبور جدید"
             name="confirmPassword"
-            type={showPassword ? "text" : "password"}
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            type={showPassword ? 'text' : 'password'}
+            value={formData.confirmPassword}
+            onChange={handleChange}
             fullWidth
           />
           {passwordError && <Typography color="error">{passwordError}</Typography>}
@@ -207,10 +192,12 @@ const UserProfile = () => {
           <Button
             variant="contained"
             color="secondary"
-            onClick={handlePasswordChange}
             fullWidth
+            onClick={handlePasswordChange}
+            disabled={
+              !formData.currentPassword || !formData.newPassword || !formData.confirmPassword
+            }
             sx={{ fontFamily: '"Yekan Bakh", sans-serif' }}
-            disabled={!currentPassword || !newPassword || !confirmPassword}
           >
             تغییر رمز عبور
           </Button>
