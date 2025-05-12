@@ -35,4 +35,4 @@
 1. ابتدا مخزن را کلون کنید:
 
    ```bash
-   git clone https://github.com/shahryar2004a/vegetables-shop.git
+   git clone https://github.com/shahryar2004a/BCP-Standard.git
