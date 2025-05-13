@@ -1,38 +1,43 @@
-# BCP Standard Project
+# BCP-Standard
 
-## توضیح پروژه
-پروژه استاندارد BCP (Business Continuity Planning) به سازمان‌ها کمک می‌کند تا استانداردهای BCP را پیاده‌سازی کرده و فرآیند مدیریت بحران، کارمندان و دارایی‌ها را به صورت مؤثر انجام دهند. این پروژه امکان ایجاد ارتباط بین کارمندان، دارایی‌ها و سطوح بحران را فراهم کرده و قابلیت تست سناریوهای مختلف بحران را دارد.
+**BCP-Standard** is a practical implementation of Business Continuity Planning for organizations. It helps organizations manage crises, simulate emergency scenarios, and maintain continuity of operations during disruptions.
 
-## ویژگی‌ها
-- مدیریت و ارتباط بین کارمندان، دارایی‌ها و سطوح بحران
-- امکان تست سناریوهای مختلف بحران برای آماده‌سازی سازمان
-- رابط کاربری جذاب و قابل استفاده برای مدیریت داده‌ها و سناریوها
-- امنیت بالا برای حفاظت از داده‌های حساس و اطلاعات کاربران
+## ✨ Features
 
-## تکنولوژی‌ها
-این پروژه با استفاده از تکنولوژی‌های زیر ساخته شده است:
+- Employee management
+- Asset management
+- Crisis level definitions and management
+- Linking assets, employees, and crisis levels
+- Crisis scenario testing and simulation
+- Admin panel with user-friendly UI
+
+## 🛠 Technologies Used
 
 ### Frontend:
-- **HTML/CSS**: برای طراحی ساختار و استایل صفحات
-- **JavaScript**: برای توسعه منطق رابط کاربری
-- **React**: برای ساخت رابط کاربری دینامیک و تعامل‌پذیر
-- **Axios**: برای ارسال درخواست‌های HTTP به سرور
-- **React Router Dom**: برای مدیریت مسیریابی در صفحات
-- **Tailwind CSS**: برای طراحی سریع و راحت صفحات
-- **Material UI**: برای استفاده از کامپوننت‌های آماده و زیبای رابط کاربری
-- **XLSX**: برای خواندن و پردازش فایل‌های Excel
+- HTML / CSS / JavaScript
+- React
+- Axios
+- React Router DOM
+- Tailwind CSS
+- XLSX
+- @mui/x-data-grid
+- @mui/material
+- @mui/icons-material
 
 ### Backend:
-- **bcrypt & bcryptjs**: برای هش کردن رمز عبور و امنیت بیشتر
-- **Express**: برای ایجاد سرور و مدیریت درخواست‌ها
-- **jsonwebtoken**: برای مدیریت توکن‌های JWT و احراز هویت
-- **Mongoose**: برای ارتباط با پایگاه داده MongoDB
-- **Multer**: برای مدیریت آپلود فایل‌ها
-- **UUID**: برای تولید شناسه‌های منحصر به فرد برای هر رکورد
+- Node.js / Express.js
+- MongoDB / Mongoose
+- Bcrypt / Bcryptjs
+- Multer
+- UUID
+- JSON Web Token (JWT)
 
-## نصب و راه‌اندازی
+---
 
-1. ابتدا مخزن را کلون کنید:
+## 🚀 Installation & Setup
 
-   ```bash
-   git clone https://github.com/shahryar2004a/BCP-Standard.git
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/shahryar2004a/BCP-Standard.git
+cd BCP-Standard
